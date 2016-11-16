@@ -23,7 +23,21 @@ public class VoteSystem {
 	 */
 	public void select()
 	{
+		String name = null;
+		String party = null;
+		String select;
+		Candidate candA = new Candidate(name, party);
+		Candidate candB = new Candidate(name, party);
+		System.out.println("Which Party? A/B");
+		String input = System.console().readLine();
+		if( input == candA.getParty() ){
+			select = candA.getName();
+		}
+		else {
+			select = candB.getName();
+		}
 		
+		System.out.println(select);
 	}
 	
 	/*
