@@ -8,6 +8,7 @@ public class VoteSystem {
 	public int id;
 	private int voteCount;		//number of votes the voter has made, should be 0 or 1
 	public String results;
+	public String choice;
 	
 	/*
 	 * Main method to run the voting software.
@@ -15,7 +16,18 @@ public class VoteSystem {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		VoteSystem vote = new VoteSystem();
+		System.out.println("Voting time!");
+		
+		System.out.println("Is " + choice + " who you want? Y/N");
+		String input = System.console().readLine();
+		if( input == "Y"){
+			vote.submitVotes();
+		}
+		else{
+			vote.clearSelections();
+			vote.select();
+		}
 	}
 	
 	/*
@@ -25,19 +37,16 @@ public class VoteSystem {
 	{
 		String name = null;
 		String party = null;
-		String select;
-		Candidate candA = new Candidate(name, party);
-		Candidate candB = new Candidate(name, party);
+		Candidate candA = new Candidate(name, party);	
+		Candidate candB = new Candidate(name, party);	
 		System.out.println("Which Party? A/B");
 		String input = System.console().readLine();
 		if( input == candA.getParty() ){
-			select = candA.getName();
+			choice = candA.getName();
 		}
 		else {
-			select = candB.getName();
+			choice = candB.getName();
 		}
-		
-		System.out.println(select);
 	}
 	
 	/*
@@ -45,7 +54,7 @@ public class VoteSystem {
 	 */
 	public void clearSelections()
 	{
-		
+		choice = null;
 	}
 	
 	/*
