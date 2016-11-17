@@ -16,11 +16,13 @@ public class VoteSystem {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		VoteSystem vote = new VoteSystem();
-		System.out.println("Voting time!");
+		Scanner in = new Scanner(System.in);
 		
-		System.out.println("Is " + choice + " who you want? Y/N");
-		String input = System.console().readLine();
+		VoteSystem vote = new VoteSystem();
+		vote.select();
+		
+		System.out.println("Is " + "choice" + " who you want? Y/N");
+		String input = in.nextLine();
 		if( input == "Y"){
 			vote.submitVotes();
 		}
@@ -35,13 +37,15 @@ public class VoteSystem {
 	 */
 	public void select()
 	{
+		Scanner in = new Scanner(System.in);
+		
 		String name = null;
 		String party = null;
-		Candidate candA = new Candidate(name, party);	
-		Candidate candB = new Candidate(name, party);	
-		System.out.println("Which Party? A/B");
-		String input = System.console().readLine();
-		if( input == candA.getParty() ){
+		Candidate candA = new Candidate(name, "Demo");	
+		Candidate candB = new Candidate(name, "Repub");	
+		System.out.println("Which Party? Demo/Repub");
+		String input = in.nextLine();
+		if( input == "Demo" ){
 			choice = candA.getName();
 		}
 		else {
