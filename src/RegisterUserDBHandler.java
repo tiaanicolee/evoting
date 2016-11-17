@@ -1,3 +1,5 @@
+import java.io.*;
+
 /**
  * A Database Handler that interfaces with the database containing
  * the Registered users that can vote.
@@ -10,8 +12,14 @@ public class RegisterUserDBHandler {
 	 * @param password
 	 * @return true if registered, false otherwise
 	 */
-	public boolean findUser(String username, String password)
+	public boolean findUser(String username, String password, String role)
 	{
-		return false;
+		String filename;
+		if (role.equals("voter")) 
+			filename = "regVoters.txt";
+		else if (role.equals("eo"))
+			filename = "regEO.txt";
+		
+		return true;
 	}
 }
