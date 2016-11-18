@@ -136,7 +136,7 @@ public class VoteSystem {
 	/*
 	 * Method for the voter to submit the votes for the VoteForm
 	 */
-	public void submitVotes()
+	public void submitVotes(String cand)
 	{
 		VoteDBHandler sub = new VoteDBHandler();
 		sub.saveVotes(cand);
