@@ -123,7 +123,6 @@ public class VoteSystem {
 			System.out.printf("\nEnter the name of the candidate you are voting for: ");
 			candidate  = in.nextLine();
 			if (cands.containsKey(candidate)){
-				//System.out.println("is a valid candidate");
 				isValid = true;
 			}
 			else{
@@ -193,10 +192,7 @@ public class VoteSystem {
 	 */
 	public void calcResults()
 	{
-		//VoteDBHandler res = new VoteDBHandler();
-		//ArrayList<String> results = res.giveVotes();
-		
-		
+
 		System.out.println("\nResults of the election:");
 		int pikCount = Collections.frequency((results), "pikachu");
 		System.out.println("Pikachu: " + pikCount);
@@ -214,11 +210,7 @@ public class VoteSystem {
 	 * and formats it for recounting purposes
 	 */
 	public void formatRecount()
-	{
-		//VoteDBHandler res = new VoteDBHandler();
-		//ArrayList<String> results = res.giveVotes();
-		
-		
+	{		
 		System.out.println("\nResults of the election:");
 		int pikCount = Collections.frequency((results), "pikachu");
 		System.out.println("Pikachu: " + pikCount);
