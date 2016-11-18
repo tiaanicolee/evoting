@@ -56,5 +56,5 @@ public class VoteDBHandler {
 			e.printStackTrace();
 		}
 	}
-}
 	
+}
