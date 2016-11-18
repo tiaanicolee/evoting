@@ -13,7 +13,7 @@ public class RegisterUserDBHandler {
 	 * @param password
 	 * @return true if registered, false otherwise
 	 */
-	public boolean findUser(String username, String password, String role)
+	public User findUser(String username, String password, String role)
 	{
 		String filename = "";
 		if (role.equals("voter")) 
@@ -30,6 +30,8 @@ public class RegisterUserDBHandler {
 				String lineSplit[] = line.split(", ");
 				User u = new User(lineSplit[0], lineSplit[1], lineSplit[2]);
 				users.put(lineSplit[0], u);
+				if (role.equals("voter"))
+					u.setVoteCount(Integer.parseInt(lineSplit[3]));
 			}
 			br.close();
 		}catch (FileNotFoundException e) {
@@ -38,8 +40,8 @@ public class RegisterUserDBHandler {
 			ex.printStackTrace();
 		}
 		if (users.containsKey(username) && users.get(username).getPassword().equals(password))
-			return true;
+			return users.get(username);
 		else
-			return false;
+			return null;
 	}
 }

@@ -15,6 +15,7 @@ public class VoteSystem {
 	public String results;
 	public Candidate choice;
 	public Hashtable <String, Candidate> cands = new Hashtable<String, Candidate>();
+	public User user;
 	
 	/*
 	 * Main method to run the voting software.
@@ -30,14 +31,6 @@ public class VoteSystem {
 		input = in.nextLine();
 		if(input.equals("V")) {			//if they are a voter
 			if (vote.login("voter")) {
-				System.out.printf("\nCandidates:\n");
-				vote.readCandidates();
-				
-				Set<String> keys = vote.cands.keySet();
-				for(String key: keys){
-					Candidate c = vote.cands.get(key);
-		            System.out.println(c.getParty() + " party: " + c.getName());
-		        }
 				
 				vote.select();
 			}
@@ -64,7 +57,12 @@ public class VoteSystem {
 		password = in.nextLine();
 		
 		RegisterUserDBHandler handler = new RegisterUserDBHandler();
-		return handler.findUser(username, password, role);
+		user = handler.findUser(username, password, role);
+	
+		if (user != null)
+			return true;
+		else
+			return false;
 	}
 	
 	/*
@@ -78,7 +76,23 @@ public class VoteSystem {
 		boolean confirm = false;
 		boolean isValid;
 		
-		while (!confirm && voteCount < 1) {
+		if (user.getVoteCount() >= 1)
+		{
+			System.out.println("This user already voted once.");
+			System.exit(0);
+		}
+		
+		while (!confirm && user.getVoteCount() < 1) {
+			System.out.printf("\nCandidates:\n");
+			readCandidates();
+			
+			Set<String> keys = cands.keySet();
+			for(String key: keys){
+				Candidate c = cands.get(key);
+	            System.out.println(c.getParty() + " party: " + c.getName());
+	        }
+			
+			
 			String candidate;
 			do{
 			System.out.printf("\nEnter the name of the candidate you are voting for: ");
@@ -97,7 +111,7 @@ public class VoteSystem {
 			if (input.equals("Y")){
 				choice = cands.get(candidate);
 				confirm = true;
-				voteCount++;
+				user.setVoteCount(user.getVoteCount() + 1);
 			}
 		}
 		return true;
@@ -165,8 +179,7 @@ public class VoteSystem {
 	 */
 	public void logout()
 	{
-		username = null;
-		password = null;
+		System.exit(0);
 	}
 
 }
