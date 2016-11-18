@@ -12,6 +12,7 @@ public class VoteSystem {
 	public Candidate choice;
 	public Hashtable <String, Candidate> cands = new Hashtable<String, Candidate>();
 	public User user;
+	public RegisterUserDBHandler handler;
 	
 	/*
 	 * Main method to run the voting software.
@@ -22,6 +23,9 @@ public class VoteSystem {
 		String input;
 		
 		VoteSystem vote = new VoteSystem();
+		vote.handler = new RegisterUserDBHandler();
+		
+		System.out.println("Welcome to the E-Voting Software.");
 		
 		System.out.print("Are you a voter or an election officer? V/EO ");
 		input = in.nextLine();
@@ -35,13 +39,15 @@ public class VoteSystem {
 		}
 		else if (input.equals("EO")) {	//if they are an election officer
 			if (vote.login("eo") == true) {
-				//if (input == "Res") {
-					System.out.println("worked");
+				System.out.println("Do you want the results or a recount? Res/Rec");
+				input = in.nextLine();
+				if (input.equals("Res")) {
 					vote.calcResults();
-				//}
-				//else {
+				}
+				else {
+					System.out.println("recount");
 					vote.formatRecount();
-				//}
+				}
 			}
 			else
 				System.out.println("Incorrect username/password.");
@@ -50,6 +56,9 @@ public class VoteSystem {
 			System.exit(0);
 	}
 	
+	/*
+	 * Method to login a user
+	 */
 	public boolean login(String role)
 	{
 		Scanner in = new Scanner(System.in);
@@ -58,7 +67,6 @@ public class VoteSystem {
 		System.out.print("Enter password: ");
 		String password = in.nextLine();
 		
-		RegisterUserDBHandler handler = new RegisterUserDBHandler();
 		user = handler.findUser(username, password, role);
 	
 		if (user != null)
@@ -100,9 +108,11 @@ public class VoteSystem {
 			System.out.printf("\nEnter the name of the candidate you are voting for: ");
 			candidate  = in.nextLine();
 			if (cands.containsKey(candidate)){
+				//System.out.println("is a valid candidate");
 				isValid = true;
 			}
 			else{
+				System.out.println(candidate + " is not a valid candidate.");
 				isValid = false;
 			}
 			} while (!isValid);
@@ -112,6 +122,7 @@ public class VoteSystem {
 				choice = cands.get(candidate);
 				confirm = true;
 				user.setVoteCount(user.getVoteCount() + 1);
+				handler.updateVoteCount(user, user.getVoteCount());
 				submitVotes(choice);
 			}
 		}
@@ -164,18 +175,18 @@ public class VoteSystem {
 	public void calcResults()
 	{
 		VoteDBHandler res = new VoteDBHandler();
-		String[] results = res.giveVotes();
+		ArrayList<String> results = res.giveVotes();
 		
 		
 		System.out.println("\nResults of the election:");
-		int pikCount = Collections.frequency(Arrays.asList(results), "pikachu");
+		int pikCount = Collections.frequency((results), "pikachu");
 		System.out.println("Pikachu: " + pikCount);
-		int charCount = Collections.frequency(Arrays.asList(results), "charmander");
+		int charCount = Collections.frequency((results), "charmander");
 		System.out.println("Charmander: " + charCount);
-		int bulbCount = Collections.frequency(Arrays.asList(results), "bulbasaur");
+		int bulbCount = Collections.frequency((results), "bulbasaur");
 		System.out.println("Bulbasaur: " + bulbCount);
-		int squirCount = Collections.frequency(Arrays.asList(results), "squirtle");
-		System.out.println("Squirtle: " + squirCount);		
+		int squirCount = Collections.frequency((results), "squirtle");
+		System.out.println("Squirtle: " + squirCount);			
 		
 	}
 	
@@ -195,5 +206,5 @@ public class VoteSystem {
 	{
 		System.exit(0);
 	}
-
 }
+

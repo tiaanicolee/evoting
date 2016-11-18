@@ -44,4 +44,33 @@ public class RegisterUserDBHandler {
 		else
 			return null;
 	}
+	
+	/*
+	 * Method to update the vote count in the flat file.
+	 */
+	public void updateVoteCount(User user, int count)
+	{
+		String replaceWith = user.getUsername() + ", " + user.getPassword() + ", " + user.getID() + ", " + count;
+		try {
+	        // input the file content to the String "input"
+	        BufferedReader file = new BufferedReader(new FileReader("regVoters.txt"));
+	        String line;String input = "";
+
+	        while ((line = file.readLine()) != null){ 
+	        	if ((line.substring(0, line.length()-1)).equals(replaceWith.substring(0, replaceWith.length()-1)))
+	        		line = replaceWith;
+	        	input += line + '\n';
+	        }
+
+	        file.close();
+
+	        FileOutputStream fileOut = new FileOutputStream("regVoters.txt");
+	        fileOut.write(input.getBytes());
+	        fileOut.close();
+
+	    } catch (Exception e) {
+	        System.out.println("Problem reading file.");
+	    }
+		return;
+	}
 }

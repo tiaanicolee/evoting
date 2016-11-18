@@ -1,4 +1,4 @@
-Tia Curry, pass, 10342, 1
+Tia Curry, pass, 10342, 0
 Joshua Clark, pass1, 11111, 0
 Ash Ketchum, pass2, 54321, 0
 Nurse Joy, pass3, 76743, 0

@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.*;
 
 /**
  * A Database Handler that interfaces with the database containing
@@ -10,30 +11,23 @@ public class VoteDBHandler {
 	 * Accesses the database to get an array of all of the vote forms.
 	 * @return array of votes
 	 */
-	public String[] giveVotes()
+	public ArrayList<String> giveVotes()
 	{
 		String fileName = "Votes.txt";
 		String line;
-		String[] array;
-		array = new String[100];
+		ArrayList<String> list = new ArrayList<String>();
 		try {
 			FileReader fr = new FileReader(fileName);
 			BufferedReader br = new BufferedReader(fr);
 			
-			
-			while ((line = br.readLine()) !=null) {
-				
-				for (int i = 0; i < array.length; i++){
-					array[i] = br.readLine();
-				}
+			while ((line = br.readLine()) !=null){
+				list.add(line);
 			}
-			System.out.println(array);
 			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		//System.out.println(Arrays.toString(array));
-		return array;
+		return list;
 	}
 	
 	/**
@@ -51,7 +45,7 @@ public class VoteDBHandler {
 			bw.close();
 			fw.close();
 			
-			System.out.println("done");
+			System.out.println("\nVote has been submitted");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
