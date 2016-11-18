@@ -46,7 +46,13 @@ public class VoteSystem {
 		}
 		else if (input.equals("EO")) {	//if they are an election officer
 			if (vote.login("eo") == true) {
-				
+				//if (input == "Res") {
+					System.out.println("worked");
+					vote.calcResults();
+				//}
+				//else {
+					vote.formatRecount();
+				//}
 			}
 			else
 				System.out.println("Incorrect username/password.");
@@ -148,6 +154,19 @@ public class VoteSystem {
 	 */
 	public void calcResults()
 	{
+		VoteDBHandler res = new VoteDBHandler();
+		String[] results = res.giveVotes();
+		
+		
+		System.out.println("\nResults of the election:");
+		int pikCount = Collections.frequency(Arrays.asList(results), "pikachu");
+		System.out.println("Pikachu: " + pikCount);
+		int charCount = Collections.frequency(Arrays.asList(results), "charmander");
+		System.out.println("Charmander: " + charCount);
+		int bulbCount = Collections.frequency(Arrays.asList(results), "bulbasaur");
+		System.out.println("Bulbasaur: " + bulbCount);
+		int squirCount = Collections.frequency(Arrays.asList(results), "squirtle");
+		System.out.println("Squirtle: " + squirCount);		
 		
 	}
 	
