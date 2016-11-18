@@ -1,10 +1,10 @@
 
-public class Voter {
+public class User {
 	private String username;
 	private String password;
 	private String id;
 	
-	public Voter(String vUsername, String vPassword, String vId)
+	public User(String vUsername, String vPassword, String vId)
 	{
 		username = vUsername;
 		password = vPassword;

@@ -21,15 +21,15 @@ public class RegisterUserDBHandler {
 		else if (role.equals("eo"))
 			filename = "regEO.txt";
 		
-		Hashtable<String, Voter> users = new Hashtable<String, Voter>();
+		Hashtable<String, User> users = new Hashtable<String, User>();
 		String line;
 		try {
 			FileReader fr = new FileReader(filename);
 			BufferedReader br = new BufferedReader(fr);
 			while((line = br.readLine()) != null){
 				String lineSplit[] = line.split(", ");
-				Voter v = new Voter(lineSplit[0], lineSplit[1], lineSplit[2]);
-				users.put(lineSplit[0], v);
+				User u = new User(lineSplit[0], lineSplit[1], lineSplit[2]);
+				users.put(lineSplit[0], u);
 			}
 			br.close();
 		}catch (FileNotFoundException e) {
