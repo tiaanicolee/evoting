@@ -100,11 +100,9 @@ public class VoteSystem {
 			System.out.printf("\nEnter the name of the candidate you are voting for: ");
 			candidate  = in.nextLine();
 			if (cands.containsKey(candidate)){
-				//System.out.println("is a valid candidate");
 				isValid = true;
 			}
 			else{
-				//System.out.println("not a valid candidate");
 				isValid = false;
 			}
 			} while (!isValid);
@@ -114,6 +112,7 @@ public class VoteSystem {
 				choice = cands.get(candidate);
 				confirm = true;
 				user.setVoteCount(user.getVoteCount() + 1);
+				submitVotes(choice);
 			}
 		}
 		return true;
@@ -152,10 +151,10 @@ public class VoteSystem {
 	/*
 	 * Method for the voter to submit the votes for the VoteForm
 	 */
-	public void submitVotes(String cand)
+	public void submitVotes(Candidate cand)
 	{
 		VoteDBHandler sub = new VoteDBHandler();
-		sub.saveVotes(cand);
+		sub.saveVotes(cand.getName());
 	}
 	
 	/*
