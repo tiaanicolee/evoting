@@ -1,4 +1,4 @@
-import java.util.Hashtable;
+import java.util.*;
 import java.util.Scanner;
 import java.util.Set;
 import java.io.*;
@@ -8,10 +8,6 @@ import java.io.*;
  * interaction between the data and UI.
  */
 public class VoteSystem {
-	public String username;
-	public String password;
-	public int id;
-	private int voteCount;		//number of votes the voter has made, should be 0 or 1
 	public String results;
 	public Candidate choice;
 	public Hashtable <String, Candidate> cands = new Hashtable<String, Candidate>();
@@ -39,7 +35,13 @@ public class VoteSystem {
 		}
 		else if (input.equals("EO")) {	//if they are an election officer
 			if (vote.login("eo") == true) {
-				
+				//if (input == "Res") {
+					System.out.println("worked");
+					vote.calcResults();
+				//}
+				//else {
+					vote.formatRecount();
+				//}
 			}
 			else
 				System.out.println("Incorrect username/password.");
@@ -52,9 +54,9 @@ public class VoteSystem {
 	{
 		Scanner in = new Scanner(System.in);
 		System.out.print("Enter username: ");
-		username = in.nextLine();
+		String username = in.nextLine();
 		System.out.print("Enter password: ");
-		password = in.nextLine();
+		String password = in.nextLine();
 		
 		RegisterUserDBHandler handler = new RegisterUserDBHandler();
 		user = handler.findUser(username, password, role);
@@ -98,11 +100,11 @@ public class VoteSystem {
 			System.out.printf("\nEnter the name of the candidate you are voting for: ");
 			candidate  = in.nextLine();
 			if (cands.containsKey(candidate)){
-				System.out.println("is a valid candidate");
+				//System.out.println("is a valid candidate");
 				isValid = true;
 			}
 			else{
-				System.out.println("not a valid candidate");
+				//System.out.println("not a valid candidate");
 				isValid = false;
 			}
 			} while (!isValid);
@@ -162,6 +164,19 @@ public class VoteSystem {
 	 */
 	public void calcResults()
 	{
+		VoteDBHandler res = new VoteDBHandler();
+		String[] results = res.giveVotes();
+		
+		
+		System.out.println("\nResults of the election:");
+		int pikCount = Collections.frequency(Arrays.asList(results), "pikachu");
+		System.out.println("Pikachu: " + pikCount);
+		int charCount = Collections.frequency(Arrays.asList(results), "charmander");
+		System.out.println("Charmander: " + charCount);
+		int bulbCount = Collections.frequency(Arrays.asList(results), "bulbasaur");
+		System.out.println("Bulbasaur: " + bulbCount);
+		int squirCount = Collections.frequency(Arrays.asList(results), "squirtle");
+		System.out.println("Squirtle: " + squirCount);		
 		
 	}
 	

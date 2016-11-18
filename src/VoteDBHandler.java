@@ -10,17 +10,19 @@ public class VoteDBHandler {
 	 * Accesses the database to get an array of all of the vote forms.
 	 * @return array of votes
 	 */
-	public VoteForm[] giveVotes()
+	public String[] giveVotes()
 	{
 		String fileName = "Votes.txt";
 		String line;
 		String[] array;
-		array = new String[5];
+		array = new String[100];
 		try {
 			FileReader fr = new FileReader(fileName);
 			BufferedReader br = new BufferedReader(fr);
 			
+			
 			while ((line = br.readLine()) !=null) {
+				
 				for (int i = 0; i < array.length; i++){
 					array[i] = br.readLine();
 				}
@@ -30,10 +32,8 @@ public class VoteDBHandler {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		String[] a = array;
-		a = returnArray();
-		//System.out.println(array);
-		return null;
+		//System.out.println(Arrays.toString(array));
+		return array;
 	}
 	
 	/**
@@ -56,5 +56,5 @@ public class VoteDBHandler {
 			e.printStackTrace();
 		}
 	}
-	
 }
+	
