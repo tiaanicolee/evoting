@@ -1,4 +1,6 @@
+import java.util.Hashtable;
 import java.util.Scanner;
+import java.util.Set;
 import java.io.*;
 
 /**
@@ -11,15 +13,14 @@ public class VoteSystem {
 	public int id;
 	private int voteCount;		//number of votes the voter has made, should be 0 or 1
 	public String results;
-	public String choice;
-	public Candidate candidates[];
+	public Candidate choice;
+	public Hashtable <String, Candidate> cands = new Hashtable<String, Candidate>();
 	
 	/*
 	 * Main method to run the voting software.
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Scanner in = new Scanner(System.in);
 		String input;
 		
@@ -28,26 +29,27 @@ public class VoteSystem {
 		System.out.print("Are you a voter or an election officer? V/EO ");
 		input = in.nextLine();
 		if(input.equals("V")) {			//if they are a voter
-			if (vote.login("voter") == true) {
+			if (vote.login("voter")) {
 				System.out.printf("\nCandidates:\n");
 				vote.readCandidates();
-				for (Candidate C : vote.candidates)
-				{
-					if (C != null)
-							System.out.println(C.getParty() + " party: " + C.getName());
-				}
-				System.out.printf("\nEnter the name of the candidate you are voting for: ");
-				input = in.nextLine();
+				
+				Set<String> keys = vote.cands.keySet();
+				for(String key: keys){
+					Candidate c = vote.cands.get(key);
+		            System.out.println(c.getParty() + " party: " + c.getName());
+		        }
+				
+				vote.select();
 			}
 			else
-				System.out.println("You could not be logged in.");
+				System.out.println("Incorrect username/password.");
 		}
 		else if (input.equals("EO")) {	//if they are an election officer
 			if (vote.login("eo") == true) {
 				
 			}
 			else
-				System.out.println("You could not be logged in.");
+				System.out.println("Incorrect username/password.");
 		}
 		else 
 			System.exit(0);
@@ -72,6 +74,32 @@ public class VoteSystem {
 	public boolean select()
 	{
 		Scanner in = new Scanner(System.in);
+		String input;
+		boolean confirm = false;
+		boolean isValid;
+		
+		while (!confirm && voteCount < 1) {
+			String candidate;
+			do{
+			System.out.printf("\nEnter the name of the candidate you are voting for: ");
+			candidate  = in.nextLine();
+			if (cands.containsKey(candidate)){
+				System.out.println("is a valid candidate");
+				isValid = true;
+			}
+			else{
+				System.out.println("not a valid candidate");
+				isValid = false;
+			}
+			} while (!isValid);
+			System.out.println("Are you sure of your selection: " + candidate+ "? Y/N");
+			input = in.nextLine();
+			if (input.equals("Y")){
+				choice = cands.get(candidate);
+				confirm = true;
+				voteCount++;
+			}
+		}
 		return true;
 	}
 	
@@ -79,20 +107,16 @@ public class VoteSystem {
 	{
 		String fileName = "candidates.txt";
 		String line;
-		int counter = 0;
-		candidates = new Candidate[10];
 		try {
 			FileReader fr = new FileReader(fileName);
 			BufferedReader br = new BufferedReader(fr);
 			while((line = br.readLine()) != null){
 				String lineSplit[] = line.split(", ");
 				Candidate c = new Candidate(lineSplit[0], lineSplit[1]);
-				candidates[counter] = c;
-				counter++;
+				cands.put(lineSplit[0], c);
 			}
 			br.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		catch (IOException ex) {
@@ -140,7 +164,8 @@ public class VoteSystem {
 	 */
 	public void logout()
 	{
-		
+		username = null;
+		password = null;
 	}
 
 }
