@@ -1,5 +1,8 @@
 # evoting
 This is an E-voting application where votes can be cast and counted.
+RegVoters.txt contains the registered voters. The format is username, password, id, number of votes.
+RegEO.txt contains the registered election officers. The format is username, password, id.
+
 
 Registered Voters:
 
