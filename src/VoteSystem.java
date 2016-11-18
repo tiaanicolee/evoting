@@ -138,7 +138,8 @@ public class VoteSystem {
 	 */
 	public void submitVotes()
 	{
-		
+		VoteDBHandler sub = new VoteDBHandler();
+		sub.saveVotes(cand);
 	}
 	
 	/*
