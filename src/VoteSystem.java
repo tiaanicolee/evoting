@@ -8,11 +8,20 @@ import java.io.*;
  * interaction between the data and UI.
  */
 public class VoteSystem {
-	public String results;
+	//public String results;
 	public Candidate choice;
 	public Hashtable <String, Candidate> cands = new Hashtable<String, Candidate>();
 	public User user;
 	public RegisterUserDBHandler handler;
+	public VoteDBHandler res;
+	public ArrayList<String> results;
+	
+	public VoteSystem()
+	{
+		handler = new RegisterUserDBHandler();
+		res = new VoteDBHandler();
+		results = res.giveVotes();
+	}
 	
 	/*
 	 * Main method to run the voting software.
@@ -21,39 +30,45 @@ public class VoteSystem {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		String input;
+		boolean cont = true;
 		
 		VoteSystem vote = new VoteSystem();
-		vote.handler = new RegisterUserDBHandler();
+		
 		
 		System.out.println("Welcome to the E-Voting Software.");
 		
-		System.out.print("Are you a voter or an election officer? V/EO ");
-		input = in.nextLine();
-		if(input.equals("V")) {			//if they are a voter
-			if (vote.login("voter")) {
-				
-				vote.select();
-			}
-			else
-				System.out.println("Incorrect username/password.");
-		}
-		else if (input.equals("EO")) {	//if they are an election officer
-			if (vote.login("eo") == true) {
-				System.out.println("Do you want the results or a recount? Res/Rec");
-				input = in.nextLine();
-				if (input.equals("Res")) {
-					vote.calcResults();
+		while (cont){
+			System.out.print("Are you a voter or an election officer? V/EO/exit ");
+			input = in.nextLine();
+			if(input.equals("V")) {			//if they are a voter
+				if (vote.login("voter")) {
+					
+					vote.select();
 				}
-				else {
-					System.out.println("recount");
-					vote.formatRecount();
-				}
+				else
+					System.out.println("Incorrect username/password.");
 			}
-			else
-				System.out.println("Incorrect username/password.");
+			else if (input.equals("EO")) {	//if they are an election officer
+				if (vote.login("eo") == true) {
+					System.out.println("Do you want the results or a recount? Res/Rec");
+					input = in.nextLine();
+					if (input.equals("Res")) {
+						vote.calcResults();
+					}
+					else {
+						System.out.println("recount");
+						vote.formatRecount();
+					}
+				}
+				else
+					System.out.println("Incorrect username/password.");
+			}
+			else if (input.equals("exit")) {
+				System.out.println("Thank you for using the E-voting Software.");
+				cont = false;
+				System.exit(0);
+			}
 		}
-		else 
-			System.exit(0);
 	}
 	
 	/*
@@ -116,7 +131,7 @@ public class VoteSystem {
 				isValid = false;
 			}
 			} while (!isValid);
-			System.out.println("Are you sure of your selection: " + candidate+ "? Y/N");
+			System.out.printf("Are you sure of your selection: " + candidate+ "? Y/N");
 			input = in.nextLine();
 			if (input.equals("Y")){
 				choice = cands.get(candidate);
@@ -124,11 +139,15 @@ public class VoteSystem {
 				user.setVoteCount(user.getVoteCount() + 1);
 				handler.updateVoteCount(user, user.getVoteCount());
 				submitVotes(choice);
+				System.out.println("User has been logged out.");
 			}
 		}
 		return true;
 	}
 	
+	/*
+	 * Method to read a file of candidates for the election.
+	 */
 	public void readCandidates()
 	{
 		String fileName = "candidates.txt";
@@ -174,8 +193,8 @@ public class VoteSystem {
 	 */
 	public void calcResults()
 	{
-		VoteDBHandler res = new VoteDBHandler();
-		ArrayList<String> results = res.giveVotes();
+		//VoteDBHandler res = new VoteDBHandler();
+		//ArrayList<String> results = res.giveVotes();
 		
 		
 		System.out.println("\nResults of the election:");
@@ -196,8 +215,8 @@ public class VoteSystem {
 	 */
 	public void formatRecount()
 	{
-		VoteDBHandler res = new VoteDBHandler();
-		ArrayList<String> results = res.giveVotes();
+		//VoteDBHandler res = new VoteDBHandler();
+		//ArrayList<String> results = res.giveVotes();
 		
 		
 		System.out.println("\nResults of the election:");
