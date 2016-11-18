@@ -8,7 +8,6 @@ import java.io.*;
  * interaction between the data and UI.
  */
 public class VoteSystem {
-	//public String results;
 	public Candidate choice;
 	public Hashtable <String, Candidate> cands = new Hashtable<String, Candidate>();
 	public User user;
@@ -16,6 +15,9 @@ public class VoteSystem {
 	public VoteDBHandler res;
 	public ArrayList<String> results;
 	
+	/*
+	 * Constructor for VoteSystem(). Initializes the handlers.
+	 */
 	public VoteSystem()
 	{
 		handler = new RegisterUserDBHandler();
@@ -69,6 +71,7 @@ public class VoteSystem {
 				System.exit(0);
 			}
 		}
+		in.close();
 	}
 	
 	/*
@@ -83,7 +86,7 @@ public class VoteSystem {
 		String password = in.nextLine();
 		
 		user = handler.findUser(username, password, role);
-	
+		in.close();
 		if (user != null)
 			return true;
 		else
@@ -141,6 +144,7 @@ public class VoteSystem {
 				System.out.println("User has been logged out.");
 			}
 		}
+		in.close();
 		return true;
 	}
 	
