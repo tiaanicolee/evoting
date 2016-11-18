@@ -196,7 +196,19 @@ public class VoteSystem {
 	 */
 	public void formatRecount()
 	{
+		VoteDBHandler res = new VoteDBHandler();
+		ArrayList<String> results = res.giveVotes();
 		
+		
+		System.out.println("\nResults of the election:");
+		int pikCount = Collections.frequency((results), "pikachu");
+		System.out.println("Pikachu: " + pikCount);
+		int charCount = Collections.frequency((results), "charmander");
+		System.out.println("Charmander: " + charCount);
+		int bulbCount = Collections.frequency((results), "bulbasaur");
+		System.out.println("Bulbasaur: " + bulbCount);
+		int squirCount = Collections.frequency((results), "squirtle");
+		System.out.println("Squirtle: " + squirCount);	
 	}
 	
 	/*
