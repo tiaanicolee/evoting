@@ -2,6 +2,7 @@ package VotingInterface;
 import Voting.VoteDBHandler;
 
 
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -13,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JToggleButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -50,13 +52,29 @@ public class Candidates extends JFrame {
 		final int ID = id;
 		
 		JButton rdbtnNewRadioButton = new JButton("Squirtle");
+		
 		rdbtnNewRadioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VoteDBHandler squirtle = new VoteDBHandler();
-				squirtle.saveVotes("squirtle", ID);
-				JOptionPane.showMessageDialog(contentPane, "Thank you For Voting!");
-				dispose();
-				os.setVisible(true);
+				Object[] options = {"Yes, please", "No, thanks"};
+                int n = JOptionPane.showOptionDialog(contentPane,
+                   "Are you sure?",
+                   "A Follow-up Question",
+                   JOptionPane.YES_NO_OPTION,
+                   JOptionPane.QUESTION_MESSAGE,
+                   null,
+                   options,
+                   options[0]);
+                if (n == JOptionPane.YES_OPTION) {
+                	VoteDBHandler squirtle = new VoteDBHandler();
+    				squirtle.saveVotes("squirtle", ID);
+    				JOptionPane.showMessageDialog(contentPane, "Thank you For Voting!");
+    				dispose();
+    				os.setVisible(true);
+                } else if (n == JOptionPane.NO_OPTION) {
+                	Candidates c = new Candidates(ID);
+					c.setVisible(true);
+                } 
+				
 				
 				
 			}
@@ -67,11 +85,25 @@ public class Candidates extends JFrame {
 		JButton rdbtnNewRadioButton_1 = new JButton("Charmander");
 		rdbtnNewRadioButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VoteDBHandler charmander = new VoteDBHandler();
-				charmander.saveVotes("charmander", ID);
-				JOptionPane.showMessageDialog(contentPane, "Thank you For Voting!");
-				dispose();
-				os.setVisible(true);
+				Object[] options = {"Yes, please", "No, thanks"};
+                int n = JOptionPane.showOptionDialog(contentPane,
+                   "Are you sure?",
+                   "A Follow-up Question",
+                   JOptionPane.YES_NO_OPTION,
+                   JOptionPane.QUESTION_MESSAGE,
+                   null,
+                   options,
+                   options[0]);
+                if (n == JOptionPane.YES_OPTION) {
+                	VoteDBHandler squirtle = new VoteDBHandler();
+    				squirtle.saveVotes("charmander", ID);
+    				JOptionPane.showMessageDialog(contentPane, "Thank you For Voting!");
+    				dispose();
+    				os.setVisible(true);
+                } else if (n == JOptionPane.NO_OPTION) {
+                	Candidates c = new Candidates(ID);
+					c.setVisible(true);
+                } 
 				
 			}
 		});
@@ -81,11 +113,25 @@ public class Candidates extends JFrame {
 		JButton rdbtnNewRadioButton_2 = new JButton("Bulbasaur");
 		rdbtnNewRadioButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VoteDBHandler bulb = new VoteDBHandler();
-				bulb.saveVotes("bulbasaur", ID);
-				JOptionPane.showMessageDialog(contentPane, "Thank you For Voting!");
-				dispose();
-				os.setVisible(true);
+				Object[] options = {"Yes, please", "No, thanks"};
+                int n = JOptionPane.showOptionDialog(contentPane,
+                   "Are you sure?",
+                   "A Follow-up Question",
+                   JOptionPane.YES_NO_OPTION,
+                   JOptionPane.QUESTION_MESSAGE,
+                   null,
+                   options,
+                   options[0]);
+                if (n == JOptionPane.YES_OPTION) {
+                	VoteDBHandler squirtle = new VoteDBHandler();
+    				squirtle.saveVotes("bulbasaur", ID);
+    				JOptionPane.showMessageDialog(contentPane, "Thank you For Voting!");
+    				dispose();
+    				os.setVisible(true);
+                } else if (n == JOptionPane.NO_OPTION) {
+                	Candidates c = new Candidates(ID);
+					c.setVisible(true);
+                } 
 				
 			}
 		});
@@ -95,12 +141,25 @@ public class Candidates extends JFrame {
 		JButton rdbtnNewRadioButton_3 = new JButton("Pikachu");
 		rdbtnNewRadioButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VoteDBHandler pik = new VoteDBHandler();
-				pik.saveVotes("pikachu", ID);
-				JOptionPane.showMessageDialog(contentPane, "Thank you For Voting!");
-				dispose();
-				os.setVisible(true);
-				
+				Object[] options = {"Yes, please", "No, thanks"};
+                int n = JOptionPane.showOptionDialog(contentPane,
+                   "Are you sure?",
+                   "A Follow-up Question",
+                   JOptionPane.YES_NO_OPTION,
+                   JOptionPane.QUESTION_MESSAGE,
+                   null,
+                   options,
+                   options[0]);
+                if (n == JOptionPane.YES_OPTION) {
+                	VoteDBHandler squirtle = new VoteDBHandler();
+    				squirtle.saveVotes("pikachu", ID);
+    				JOptionPane.showMessageDialog(contentPane, "Thank you For Voting!");
+    				dispose();
+    				os.setVisible(true);
+                } else if (n == JOptionPane.NO_OPTION) {
+                	Candidates c = new Candidates(ID);
+					c.setVisible(true);
+                } 				
 			}
 		});
 		rdbtnNewRadioButton_3.setBounds(248, 162, 109, 23);

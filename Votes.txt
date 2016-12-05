@@ -3,3 +3,6 @@ charmander
 bulbasaur
 pikachu
 charmander
+squirtle
+charmander
+bulbasaur

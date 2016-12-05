@@ -54,7 +54,7 @@ public class EoDecision extends JFrame {
 		btnResults.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VoteSystem results = new VoteSystem();
-				JOptionPane.showMessageDialog(contentPane, results.calcResults());
+				JOptionPane.showMessageDialog(contentPane, "The winner is: " + results.calcResults());
 				
 				
 			}
@@ -67,7 +67,7 @@ public class EoDecision extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				VoteDBHandler results = new VoteDBHandler();
 				System.out.println(results.giveVotes());
-				JOptionPane.showMessageDialog(contentPane, results.giveVotes());
+				JOptionPane.showMessageDialog(contentPane, "Logged votes: " + results.giveVotes());
 				//Recount rec = new Recount();
 				//rec.setVisible(true);
 			}
