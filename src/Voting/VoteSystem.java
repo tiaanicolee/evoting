@@ -33,6 +33,12 @@ public class VoteSystem {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		Encrypt en = new Encrypt();
+		en.createKey();
+		en.encrypt("regVoters.txt", "voterEncrypt.txt");
+		en.encrypt("regEO.txt", "eoEncrypt");
+		
+		
 		Scanner in = new Scanner(System.in);
 		String input;
 		boolean cont = true;
@@ -52,14 +58,23 @@ public class VoteSystem {
 	 */
 	public int login(String username, String password, String role)
 	{
+		Encrypt en = new Encrypt();
+		en.decrypt("voterEncrypt.txt", "regVoters.txt");
+		en.decrypt("eoEncrypt.txt", "regEO.txt");
 		
 		user = handler.findUser(username, password, role);
 		this.username = username;
 		this.password = password;
-		if (user != null)
+		if (user != null){
+			en.encrypt("regVoters.txt", "voterEncrypt.txt");
+			en.encrypt("regEO.txt", "eoEncrypt");
 			return user.getID();
-		else
+		}
+		else {
+			en.encrypt("regVoters.txt", "voterEncrypt.txt");
+			en.encrypt("regEO.txt", "eoEncrypt");
 			return -1;
+		}
 	}
 	
 	
