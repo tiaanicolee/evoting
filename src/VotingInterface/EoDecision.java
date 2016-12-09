@@ -46,8 +46,8 @@ public class EoDecision extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblDoYouWish = new JLabel("Do you wish to view results or do a recount?");
-		lblDoYouWish.setBounds(81, 52, 363, 37);
+		JLabel lblDoYouWish = new JLabel("Election Officer Menu");
+		lblDoYouWish.setBounds(164, 11, 363, 37);
 		contentPane.add(lblDoYouWish);
 		
 		JButton btnResults = new JButton("Results");
@@ -59,7 +59,7 @@ public class EoDecision extends JFrame {
 				
 			}
 		});
-		btnResults.setBounds(82, 101, 89, 23);
+		btnResults.setBounds(74, 123, 89, 23);
 		contentPane.add(btnResults);
 		
 		JButton btnRecount = new JButton("Recount");
@@ -72,7 +72,7 @@ public class EoDecision extends JFrame {
 				//rec.setVisible(true);
 			}
 		});
-		btnRecount.setBounds(271, 101, 89, 23);
+		btnRecount.setBounds(263, 123, 89, 23);
 		contentPane.add(btnRecount);
 		
 		JButton btnNewButton = new JButton("Logout");
@@ -85,6 +85,14 @@ public class EoDecision extends JFrame {
 		});
 		btnNewButton.setBounds(164, 172, 89, 23);
 		contentPane.add(btnNewButton);
+		
+		JLabel lblResultsPresentsThe = new JLabel("Results presents the winner and the official count.");
+		lblResultsPresentsThe.setBounds(97, 49, 251, 14);
+		contentPane.add(lblResultsPresentsThe);
+		
+		JLabel lblRecountPresentsThe = new JLabel("Recount presents the unofficial tally of the votes");
+		lblRecountPresentsThe.setBounds(97, 74, 235, 14);
+		contentPane.add(lblRecountPresentsThe);
 	}
 
 }

@@ -79,7 +79,7 @@ public class Candidates extends JFrame {
 				
 			}
 		});
-		rdbtnNewRadioButton.setBounds(248, 57, 109, 23);
+		rdbtnNewRadioButton.setBounds(249, 79, 109, 23);
 		contentPane.add(rdbtnNewRadioButton);
 		
 		JButton rdbtnNewRadioButton_1 = new JButton("Charmander");
@@ -107,7 +107,7 @@ public class Candidates extends JFrame {
 				
 			}
 		});
-		rdbtnNewRadioButton_1.setBounds(248, 92, 109, 23);
+		rdbtnNewRadioButton_1.setBounds(249, 114, 109, 23);
 		contentPane.add(rdbtnNewRadioButton_1);
 		
 		JButton rdbtnNewRadioButton_2 = new JButton("Bulbasaur");
@@ -135,7 +135,7 @@ public class Candidates extends JFrame {
 				
 			}
 		});
-		rdbtnNewRadioButton_2.setBounds(248, 127, 109, 23);
+		rdbtnNewRadioButton_2.setBounds(249, 149, 109, 23);
 		contentPane.add(rdbtnNewRadioButton_2);
 		
 		JButton rdbtnNewRadioButton_3 = new JButton("Pikachu");
@@ -162,23 +162,35 @@ public class Candidates extends JFrame {
                 } 				
 			}
 		});
-		rdbtnNewRadioButton_3.setBounds(248, 162, 109, 23);
+		rdbtnNewRadioButton_3.setBounds(249, 184, 109, 23);
 		contentPane.add(rdbtnNewRadioButton_3);
 		
 		JLabel lblDemocraticParty = new JLabel("Democratic Party");
-		lblDemocraticParty.setBounds(113, 59, 123, 16);
+		lblDemocraticParty.setBounds(114, 81, 123, 16);
 		contentPane.add(lblDemocraticParty);
 		
 		JLabel lblRepublicanParty = new JLabel("Republican Party");
-		lblRepublicanParty.setBounds(112, 94, 109, 16);
+		lblRepublicanParty.setBounds(113, 116, 109, 16);
 		contentPane.add(lblRepublicanParty);
 		
 		JLabel lblGreenParty = new JLabel("Green Party");
-		lblGreenParty.setBounds(113, 129, 108, 16);
+		lblGreenParty.setBounds(114, 151, 108, 16);
 		contentPane.add(lblGreenParty);
 		
 		JLabel lblLibertarianParty = new JLabel("Libertarian Party");
-		lblLibertarianParty.setBounds(113, 164, 108, 16);
+		lblLibertarianParty.setBounds(114, 186, 108, 16);
 		contentPane.add(lblLibertarianParty);
+		
+		JLabel lblSelectTheCandidate = new JLabel("Select the candidate you wish to vote for. ");
+		lblSelectTheCandidate.setBounds(128, 31, 230, 25);
+		contentPane.add(lblSelectTheCandidate);
+		
+		JLabel lblYouWillHave = new JLabel("You will have a chance to change your decision");
+		lblYouWillHave.setBounds(114, 54, 230, 14);
+		contentPane.add(lblYouWillHave);
+		
+		JLabel lblCandidateSelection = new JLabel("Candidate Selection");
+		lblCandidateSelection.setBounds(182, 11, 95, 14);
+		contentPane.add(lblCandidateSelection);
 	}
 }

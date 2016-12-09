@@ -119,5 +119,9 @@ public class VoterLogin extends JFrame {
 		});
 		btnExit.setBounds(168, 217, 117, 29);
 		contentPane.add(btnExit);
+		
+		JLabel lblEnterTheUsername = new JLabel("Enter The Username and Password Given to You");
+		lblEnterTheUsername.setBounds(96, 51, 242, 14);
+		contentPane.add(lblEnterTheUsername);
 	}
 }

@@ -80,6 +80,11 @@ public class OfficerLogin extends JFrame {
 				
 				else{
 					JOptionPane.showMessageDialog(contentPane, "You are not a registered User! Please Try Again.");
+					int invalidCount = 1;
+					if(invalidCount == 3){
+						dispose();
+						
+					}
 				}
 			}
 		});
@@ -104,5 +109,9 @@ public class OfficerLogin extends JFrame {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(188, 134, 163, 34);
 		contentPane.add(passwordField);
+		
+		JLabel lblEnterYourUsername = new JLabel("Enter your Username and Password");
+		lblEnterYourUsername.setBounds(118, 53, 177, 14);
+		contentPane.add(lblEnterYourUsername);
 	}
 }
